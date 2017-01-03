@@ -79,6 +79,7 @@ public class ProjectMemberMysqlDao implements ProjectMemberDao {
 
       if (rs.next()) { // 서버에서 레코드 한 개를 가져왔다면,
         ProjectMember projectmember = new ProjectMember();
+        projectmember.setMemberNo(memberNo);
         projectmember.setProjectNo(projectNo);
         projectmember.setTitle(rs.getString("titl"));
         projectmember.setName(rs.getString("name"));
@@ -118,8 +119,7 @@ public class ProjectMemberMysqlDao implements ProjectMemberDao {
         PreparedStatement stmt = con.prepareStatement(
             "update proj_memb set "
             + " rol=?"
-            + "where mno=? and pjno=?" ); ) {
-
+            + " where mno=? and pjno=?" ); ) {
       stmt.setString(1, projectMember.getRol());
       stmt.setInt(2, projectMember.getMemberNo());
       stmt.setInt(3, projectMember.getProjectNo());

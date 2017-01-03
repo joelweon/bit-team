@@ -29,7 +29,8 @@ background-size:100% 100%;
 <tr><th>역할</th><td>
   <select name='rol'>
     <option value='팀장' <c:if test="${projectMembers.rol=='팀장'}">selected</c:if>>팀장</option>
-    <option value='팀원' <c:if test="${projectMembers.rol=='팀원'}">selected</c:if>>팀원</option></td></tr>
+    <option value='팀원' <c:if test="${projectMembers.rol=='팀원'}">selected</c:if>>팀원</option>
+  </select>
 </table>
 <button type='submit'>변경</button>
  <a href='delete?memberNo=${projectMembers.memberNo}'>삭제</a>
