@@ -3,41 +3,38 @@
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset='UTF-8'>
-<title>학생관리-상세정보</title>
+<title>프로젝트멤버-상세정보</title>
 </head>
 <body>
 
 <jsp:include page="../header"></jsp:include>
 
-<h1>학생 정보</h1>
-<form action='update' method='POST' enctype='multipart/form-data'>
-<table border='1'>
-<tr><th>이메일</th><td><input name='email' type='text' value='${student.email}'></td></tr>
-<tr><th>암호</th><td><input name='password' type='password'></td></tr>
-<tr><th>이름</th><td><input name='name' type='text' value='${student.name}'></td></tr>
-<tr><th>전화</th><td><input name='tel' type='text' value='${student.tel}'></td></tr>
-<tr><th>재직여부</th><td><input type='radio' name='working' value='true' 
-  <c:if test="${student.working}">checked</c:if> >재직중 
-  <input type='radio' name='working' value='false' 
-  <c:if test="${!student.working}">checked</c:if> >실업/미취업</td></tr>
-<tr><th>최종학력</th><td>
-<select name='grade'>
-  <option value='고졸' <c:if test="${student.grade=='고졸'}">selected</c:if>>고졸</option>
-  <option value='전문학사' <c:if test="${student.grade=='전문학사'}">selected</c:if>>전문학사</option>
-  <option value='학사' <c:if test="${student.grade=='학사'}">selected</c:if>>학사</option>
-  <option value='석사' <c:if test="${student.grade=='석사'}">selected</c:if>>석사</option>
-  <option value='박사' <c:if test="${student.grade=='박사'}">selected</c:if>>박사</option>
-</select>
-</td></tr>
-<tr><th>최종학교</th><td><input name='schoolName' type='text' value='${student.schoolName}'></td></tr>
-<tr><th>사진</th><td><img src='../upload/${student.photoPath}' height='80'><input name='photoPath' type='file'></td></tr></table>
+<style>
+body{
+background: url('../image/back.png') no-repeat center center fixed;
+background-size:100% 100%;
+}
+
+</style>
+<form action='update' method='POST'>
+<table border='5' cellspacing='0' cellpadding='3' bordercolor='#999999'>
+<tr><th>프로젝트번호</th><td><input name='projectNo' type='number' value='${projectMember.projectNo}' readonly></td></tr>
+<tr><th>프로젝트명</th><td>
+<input name='titl' value='${projectMember.title}' readonly></td></tr>
+<tr><th>이름</th><td><input name='name' type='text' value='${projectMember.name}' readonly></td></tr>
+<tr><th>역할</th><td>
+  <select name='rol'>
+    <option value='팀장' <c:if test="${projectMember.rol=='팀장'}">selected</c:if>>팀장</option>
+    <option value='팀원' <c:if test="${projectMember.rol=='팀원'}">selected</c:if>>팀원</option>/td></tr>
+</table>
 <button type='submit'>변경</button>
- <a href='delete?memberNo=${student.memberNo}'>삭제</a>
-<input type='hidden' name='memberNo' value='${student.memberNo}'>
+ <a href='delete?memberNo=${projectMember.memberNo}'>삭제</a>
+<input type='hidden' name='memberNo' value='${projectMember.memberNo}'>
  <a href='list'>목록</a>
 </form>
 
