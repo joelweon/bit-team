@@ -25,6 +25,9 @@ dependencies {
   
  // https://mvnrepository.com/artifact/org.springframework/spring-context
    compile group: 'org.springframework', name: 'spring-context', version: '4.3.5.RELEASE'
+   
+   // JSTL 확장 라이브러리
+  compile group: 'javax.servlet', name: 'jstl', version: '1.2'
   
   
   // 서블릿 컨테이너에서 제공하는 라이브러리 파일은 배포에 포함시켜서는 안된다.
