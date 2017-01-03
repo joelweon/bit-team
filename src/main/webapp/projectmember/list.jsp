@@ -31,10 +31,10 @@ background-size:100% 100%;
 
 <c:forEach var="projectMember" items="${projectMembers}">
 <tr> 
-  <td>${projectMember.projectNo}</td><td>
-  <a href='detail?projectNo=${projectMember.projectNo}&memberNo=${projectMember.memberNo}'>${projectMember.title}</a></td>
-  <td>projectMember.name</td>
-  <td>projectMember.rol</td>
+  <td>${projectMember.projectNo}</td>
+  <td><a href='detail?projectNo=${projectMember.projectNo}&memberNo=${projectMember.memberNo}'>${projectMember.title}</a></td>
+  <td>${projectMember.name}</td>
+  <td>${projectMember.rol}</td>
 </tr>
 </c:forEach>
 </table>

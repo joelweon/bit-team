@@ -29,7 +29,7 @@ public class ProjectMemberListServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         RequestDispatcher rd = request.getRequestDispatcher("/projectmember/list.jsp");
-        request.setAttribute("projectMember", list);
+        request.setAttribute("projectMembers", list);
         rd.include(request, response);
 
       } catch (Exception e) {
