@@ -20,7 +20,7 @@
   <div style='height: 70px'></div>
   <div id='title' style='height: 80px;'>
     <div style='float: left; margin-left: 10px;'>
-      <img src='../upload/${project.photoPath}' style='height: 80px;'>
+      <img src='../upload/${project.logoPath}' style='height: 80px;'>
     </div>
     <div style='float: right';height: 100px;>
       <span style='margin: 10px; margin-left: 20px; padding: 2px; font-size: 16px; vertical-align: middle; border-radius: 5px; font-weight: bold;'>
