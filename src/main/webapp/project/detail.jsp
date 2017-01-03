@@ -13,8 +13,6 @@
 <!-- 머리말 -->
 <jsp:include page="../header"></jsp:include>
 
-<div style='text-align:right;'>
-<a href='../lectureappy/list?memberNo=${project.memberNo}'>강의조회</a>  <a href='../lectureappy/reqlist?memberNo=${project.memberNo}'>신청목록</a></div>
 <div id='container' style='width: 800px'>
 <form action='update' method='GET'  enctype='multipart/form-data'>
   <div style='height: 70px'></div>
