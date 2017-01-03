@@ -15,15 +15,7 @@
 <body>
 
 <!-- header.jsp -->
-<div id='header' style='background-color:gray; height:40px;position:relative;'>
-<div style='width:300px; height:38px; position:absolute; left:0px; top:0px;'>
-<img src='../image/logo.jpeg' height='30' style='float:left; margin-top:6px; margin-left:6px;'>
-<div style='color:white; font-weight:bold; margin-left:60px; padding-top:7px; font-family:돋움체,sans-serif; font-size:x-large;'>교육센터관리시스템</div>
-</div>
-<div style='height:30px; margin: 5px; float:right;'>
-<a href='../auth/login'>로그인</a>
-</div>
-</div>
+<jsp:include page="../header"/>
 
 <div id='container' style='width: 800px'>
 <div style='margin-top: 30px;float: right;'>
@@ -57,11 +49,7 @@
 </div>
 
 <!-- footer.jsp -->
-<div id='footer' style='background-color:gray; height:20px; margin-top:20px;'>
-<div style='color:white; padding-top:2px; font-family:돋움체,sans-serif; text-align:center; font-weight:lighter;'>
-@2016 비트캠프 자바89기
-</div>
-</div>
+<jsp:include page="../footer"/>
 
 </body>
 </html>
