@@ -111,6 +111,21 @@ public class ProjectMemberMysqlDao implements ProjectMemberDao {
       ds.returnConnection(con);
     }
   }
+  
+  public void deleteMembers(int projectNo) throws Exception {
+    Connection con = ds.getConnection(); 
+    try (
+        PreparedStatement stmt = con.prepareStatement(
+            "delete from proj_memb where pjno=?"); ) {
+
+      stmt.setInt(1, projectNo);
+
+      stmt.executeUpdate();
+
+    } finally {
+      ds.returnConnection(con);
+    }
+  }
 
 
   public void update(ProjectMember projectMember) throws Exception {
@@ -173,6 +188,20 @@ public class ProjectMemberMysqlDao implements ProjectMemberDao {
       ds.returnConnection(con);
     }
     return list;
+  }
+
+
+  @Override
+  public boolean exist(int contentNo) {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+
+  @Override
+  public boolean exist(ProjectMemberDao projectMemberDao) {
+    // TODO Auto-generated method stub
+    return false;
   }
 }
 
