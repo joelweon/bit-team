@@ -21,12 +21,9 @@ public class ProjectMemberDeleteControl implements PageController {
     projectMember.setProjectNo(Integer.parseInt(request.getParameter("projectNo")));
     projectMember.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
     
-    
-    response.setContentType("text/html;charset=UTF-8");
-  
-    if (!projectMemberDao.exist(projectMemberDao)) {
-      throw new Exception("학생을 찾지 못했습니다.");
-    }
+//    if (!projectMemberDao.exist(projectMemberDao)) {
+//      throw new Exception("학생을 찾지 못했습니다.");
+//    }
     
     projectMemberDao.delete(projectMember);
     

@@ -13,7 +13,5 @@ public interface ProjectMemberDao {
   void delete(ProjectMember projectMember) throws Exception;
   public void deleteMembers(int projectNo) throws Exception;
   void update(ProjectMember projectMember) throws Exception;
-  boolean exist(int contentNo);
-  boolean exist(ProjectMemberDao projectMemberDao);
 
 }
