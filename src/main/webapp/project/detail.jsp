@@ -4,7 +4,7 @@
          trimDirectiveWhitespaces="true"%>
 
 <div id='container' style='width: 800px'>
-<form action='update.do' method='GET'  enctype='multipart/form-data'>
+<form action='updateform.do' method='GET'  enctype='multipart/form-data'>
   <div style='height: 70px'></div>
   <div id='title' style='height: 80px;'>
     <div style='float: left; margin-left: 10px;'>

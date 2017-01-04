@@ -25,8 +25,8 @@ public class ProjectDeleteControl implements PageController {
   @Override
   public String service(HttpServletRequest request, HttpServletResponse response) throws Exception {
     int projectNo = Integer.parseInt(request.getParameter("projectNo"));
-    int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-    ProjectMember projectMember = new ProjectMember();
+//    int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+//    ProjectMember projectMember = new ProjectMember();
     
     
     if (!projectDao.exist(projectNo)) {
