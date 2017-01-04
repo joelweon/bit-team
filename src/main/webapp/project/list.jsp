@@ -6,16 +6,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='UTF-8'>
-<title>프로젝트관리-목록</title>
-</head>
-<body>
-
-<!-- header.jsp -->
-<jsp:include page="../header"/>
 
 <div id='container' style='width: 800px'>
 <div style='margin-top: 30px;float: right;'>
@@ -32,7 +22,7 @@
 <div  style='width:60px; float:left;'>
 <img src='../upload/${project.logoPath}' height='36px' style='background-color:blue; position:relative; margin-left:10px;'></div>
 <div style='float:left; position:relative; padding-left:10px; font-size: 36px; font-weight: bold; width: 620px; height: 80px;'>
-<a href='detail?projectNo=${project.projectNo}'>${project.title}</a>
+<a href='detail.do?projectNo=${project.projectNo}'>${project.title}</a>
 </div>
 <div style='float: right; font-size: 16px; font-weight: bold; width: 170px; height: 80px;'>
 등록일 [<fmt:formatDate value="${request.registerDate}" pattern="yyyy-MM-dd"/>]<br>
@@ -47,9 +37,3 @@
 </c:forEach>
 
 </div>
-
-<!-- footer.jsp -->
-<jsp:include page="../footer"/>
-
-</body>
-</html>

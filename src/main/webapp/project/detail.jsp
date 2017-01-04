@@ -2,19 +2,9 @@
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
          trimDirectiveWhitespaces="true"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='UTF-8'>
-<title>프로젝트관리-상세정보</title>
-</head>
-<body>
-
-<!-- 머리말 -->
-<jsp:include page="../header"></jsp:include>
 
 <div id='container' style='width: 800px'>
-<form action='update' method='GET'  enctype='multipart/form-data'>
+<form action='update.do' method='GET'  enctype='multipart/form-data'>
   <div style='height: 70px'></div>
   <div id='title' style='height: 80px;'>
     <div style='float: left; margin-left: 10px;'>
@@ -44,7 +34,7 @@
     </div>
     <div id='writer' style='margin-left: 10px; height: 30px;'>
       <span style='display: table-col; vertical-align: middle; font-size: 18px; font-weight: bold; margin: 10px;'>
-<!-- 프로젝트 멤버 변경 필요 -->
+<!— 프로젝트 멤버 변경 필요 —>
       프로젝트 멤버 [ ${projectMembers} ]</span>
     </div>
   </div>
@@ -58,15 +48,15 @@
   <div id='postdata' style='height: 80px;'>
     <div id='projectdate' style='float: left; margin: 10px; height: 60px; width: 320px;'>
       <span style='display: table-col; vertical-align: middle; font-size: 14px; font-weight: bold; margin: 10px;'>
-<!-- 태그 변경 필요 -->
+<!— 태그 변경 필요 —>
       #태그기능은 아직 지원하지 않습니다.</span>
     </div>
     <div id='projectdate' style='float: right; margin: 10px; height: 60px; width: 420px;'>
-      <input type='button' value='삭제' onclick="location.href='delete?projectNo=${project.projectNo}'"
+      <input type='button' value='삭제' onclick="location.href='delete.do?projectNo=${project.projectNo}'"
         style='height: 40px; width: 120px; border: 0px; background-color: #bebebe; font-size: 20px; font-weight: bold; color: white; margin-right: 20px; border-radius: 5px;'></input>
       <button type='submit' 
         style='height: 40px; width: 120px; border: 0px; background-color: #bebebe; font-size: 20px; font-weight: bold; color: white; margin-right: 20px; border-radius: 5px;'>수정</button>
-      <input type='button' value='목록' onclick="location.href='list'"
+      <input type='button' value='목록' onclick="location.href='list.do'"
         style='height: 40px; width: 120px; border: 0px; background-color: #bebebe; font-size: 20px; font-weight: bold; color: white; border-radius: 5px;'></input>
     </div>
   </div>
@@ -75,9 +65,3 @@
 </form>
 <hr>
 </div>
-
-<!-- 꼬리말 -->
-<jsp:include page="../footer"></jsp:include>
-
-</body>
-</html>

@@ -5,13 +5,6 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='UTF-8'>
-<title>프로젝트멤버관리-목록</title>
-</head>
-<body>
 <style>
 body{
 background: url('../image/back.png') no-repeat center center fixed;
@@ -38,9 +31,3 @@ background-size:100% 100%;
 </tr>
 </c:forEach>
 </table>
-<a href='addForm'>추가</a><br>
-
-<jsp:include page="../footer"></jsp:include>
-
-</body>
-</html>
