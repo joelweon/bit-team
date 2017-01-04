@@ -126,6 +126,30 @@ public class ProjectMemberMysqlDao implements ProjectMemberDao {
       ds.returnConnection(con);
     }
   }
+  
+  public ArrayList<ProjectMember> getMembers(int projectNo) throws Exception {
+    Connection con = ds.getConnection(); 
+    try (
+        PreparedStatement stmt = con.prepareStatement(
+            "select * from proj_memb where pjno=?"); ) {
+
+      stmt.setInt(1, projectNo);
+
+      ResultSet rs = stmt.executeQuery();
+      ArrayList<ProjectMember> list = new ArrayList<>();
+      while (rs.next()) { // 서버에서 레코드 한 개를 가져왔다면,
+        ProjectMember projectMember = new ProjectMember();
+        projectMember.setProjectNo(rs.getInt("pjno"));
+        projectMember.setMemberNo(rs.getInt("mno"));
+
+        list.add(projectMember);
+      }
+      return list;
+
+    } finally {
+      ds.returnConnection(con);
+    }
+  }
 
 
   public void update(ProjectMember projectMember) throws Exception {
@@ -191,18 +215,6 @@ public class ProjectMemberMysqlDao implements ProjectMemberDao {
   }
 
 
-  @Override
-  public boolean exist(int contentNo) {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-
-  @Override
-  public boolean exist(ProjectMemberDao projectMemberDao) {
-    // TODO Auto-generated method stub
-    return false;
-  }
 }
 
 

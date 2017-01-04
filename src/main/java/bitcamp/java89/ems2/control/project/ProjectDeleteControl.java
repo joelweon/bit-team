@@ -1,5 +1,7 @@
 package bitcamp.java89.ems2.control.project;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,7 +32,10 @@ public class ProjectDeleteControl implements PageController {
     if (!projectDao.exist(projectNo)) {
       throw new Exception("프로젝트를 찾지 못했습니다.");
     }
-    projectMemberDao.deleteMembers(projectNo);
+    ArrayList<ProjectMember> list = projectMemberDao.getMembers(projectNo);
+    for (ProjectMember mem : list) {
+      projectMemberDao.delete(mem);
+    }
     projectDao.delete(projectNo);
     
     // 이건 임시 사용. 나중에 컨텐츠dao 구현 끝나면 거기로 이전
