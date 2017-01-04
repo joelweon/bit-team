@@ -5,6 +5,14 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+<style>
+body{
+background: url('../image/back.png') no-repeat center center fixed;
+background-size:100% 100%;
+}
+</style>
+
 <table border='5' cellspacing='0' cellpadding='3' bordercolor='#999999'>
 <tr table bgcolor='#cccccc' cellspacing='1'>
   <th>프로젝트번호</th>
@@ -22,3 +30,4 @@
 </tr>
 </c:forEach>
 </table>
+<a href='addForm.do'>추가</a><br>
