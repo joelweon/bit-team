@@ -4,7 +4,7 @@
     trimDirectiveWhitespaces="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
 
-<form action='update' method='POST'>
+<form action='update.do' method='POST'>
 <table border='5' cellspacing='0' cellpadding='3' bordercolor='#999999'>
 <tr><th>프로젝트번호</th><td><input name='projectNo' type='number' value='${projectMember.projectNo}' readonly></td></tr>
 <tr><th>프로젝트명</th><td><input name='titl' value='${projectMember.title}' readonly></td></tr>
