@@ -59,6 +59,7 @@ public class ContentMysqlDao implements ContentDao {
       ResultSet keyRS = stmt.getGeneratedKeys();
       keyRS.next();
       content.setContentNo(keyRS.getInt(1));
+      System.out.println(keyRS.getInt(1));
       keyRS.close();
       
 

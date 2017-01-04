@@ -26,7 +26,7 @@ public class DownloadMysqlDao implements DownloadDao {
             "INSERT INTO CONTENT(MNO, RDT, VW_CNT) VALUES(?,CURDATE(),?)", Statement.RETURN_GENERATED_KEYS);
         PreparedStatement stmtDownload = con.prepareStatement("INSERT INTO DOWNLOAD(DNNO, PATH) VALUES(?,?)");) {
 
-      stmtContent.setInt(1, 31);
+      stmtContent.setInt(1, download.getMemberNo());
       stmtContent.setInt(2, 0);
       stmtContent.executeUpdate();
 
@@ -50,8 +50,11 @@ public class DownloadMysqlDao implements DownloadDao {
     ArrayList<Download> list = new ArrayList<>();
     Connection con = ds.getConnection();
 
-    try (PreparedStatement stmt = con.prepareStatement("select co.cono, do.path, co.mno, co.rdt" + " from download do"
-        + " left outer join content co" + " on do.dnno=co.cono"); ResultSet rs = stmt.executeQuery();) {
+    try (PreparedStatement stmt = con.prepareStatement(
+        "select co.cono, do.path, co.mno, co.rdt" 
+    + " from download do"
+        + " left outer join content co"
+    + " on do.dnno=co.cono"); ResultSet rs = stmt.executeQuery();) {
 
       while (rs.next()) {
         Download download = new Download();

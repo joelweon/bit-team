@@ -25,6 +25,15 @@ public class FeedAddServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
+    
+    Member member = (Member)request.getSession().getAttribute("member");
+    System.out.println((Member)request.getSession().getAttribute("member"));
+    
+    if (member == null) {
+      RequestDispatcher requestDispatcher = request.getRequestDispatcher("/auth/loginform.jsp");
+      requestDispatcher.forward(request, response);
+    }
+
     try {
       Feed feed = new Feed();
       feed.setContents(request.getParameter("conts")); 
@@ -43,12 +52,11 @@ public class FeedAddServlet extends HttpServlet {
       out.println("<body>");
       
       // HeaderServlet에게 머리말 HTML 생성을 요청한다.
-      RequestDispatcher rd = request.getRequestDispatcher("/header");
-      rd.include(request, response);
+      RequestDispatcher requestDispatcher = request.getRequestDispatcher("/header");
+      requestDispatcher.include(request, response);
       
       out.println("<h1>등록 결과</h1>");
       
-      Member member = (Member)request.getSession().getAttribute("member");
       feed.setMemberNo(member.getMemberNo());
       
       ContentDao contentDao = (ContentDao)ContextLoaderListener.applicationContext.getBean("contentDao");
@@ -63,27 +71,17 @@ public class FeedAddServlet extends HttpServlet {
       out.println("<p>등록하였습니다.</p>");
       
       // FooterServlet에게 꼬리말 HTML 생성을 요청한다.
-      rd = request.getRequestDispatcher("/footer");
-      rd.include(request, response);
+      requestDispatcher = request.getRequestDispatcher("/footer");
+      requestDispatcher.include(request, response);
       
       out.println("</body>");
       out.println("</html>");
 
     } catch (Exception e) {
-      // 오류 정보를 ServletRequest에 담는다.
       request.setAttribute("error", e);
-      
-      RequestDispatcher rd = request.getRequestDispatcher("/error");
-      rd.forward(request, response);
+      RequestDispatcher requestDispatcher = request.getRequestDispatcher("/error");
+      requestDispatcher.forward(request, response);
       return;
     }
   }
 }
-
-
-
-
-
-
-
-

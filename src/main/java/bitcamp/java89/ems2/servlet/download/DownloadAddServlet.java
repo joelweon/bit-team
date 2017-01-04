@@ -2,7 +2,6 @@
 package bitcamp.java89.ems2.servlet.download;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bitcamp.java89.ems2.dao.impl.DownloadMysqlDao;
 import bitcamp.java89.ems2.domain.Download;
+import bitcamp.java89.ems2.domain.Member;
 import bitcamp.java89.ems2.listener.ContextLoaderListener;
 import bitcamp.java89.ems2.util.MultipartUtil;
 
@@ -27,14 +27,15 @@ public class DownloadAddServlet extends HttpServlet {
     try {
       Map<String, String> dataMap = MultipartUtil.parse(request);
       response.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = response.getWriter();
+
       Download download = new Download();
-      
       download.setPath(dataMap.get("filepath"));
 
-      DownloadMysqlDao downloadDao = (DownloadMysqlDao)ContextLoaderListener.applicationContext.getBean("downloadDao");
+      Member member = (Member)request.getSession().getAttribute("member");
+      download.setMemberNo(member.getMemberNo());
+
+      DownloadMysqlDao downloadDao = (DownloadMysqlDao) ContextLoaderListener.applicationContext.getBean("downloadDao");
       downloadDao.insert(download);
-      
       response.sendRedirect("./list");
 
     } catch (Exception e) {

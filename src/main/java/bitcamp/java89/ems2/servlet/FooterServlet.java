@@ -1,8 +1,8 @@
 package bitcamp.java89.ems2.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,14 +18,8 @@ public class FooterServlet extends HttpServlet {
       throws ServletException, IOException {
     
     response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-
-    out.println("<div id='footer' "
-        + "style='background-color:gray; height:20px; margin-top:20px;'>");
-    out.println("<div style='color:white; padding-top:2px; font-family:돋움체,sans-serif;"
-        + " text-align:center; font-weight:lighter;'>");
-    out.println("@2016 비트캠프 자바89기");
-    out.println("</div>");
-    out.println("</div>");
+    
+    RequestDispatcher rd = request.getRequestDispatcher("footer.jsp");
+    rd.include(request, response);
   }  
 }

@@ -42,43 +42,9 @@ public class TodoListServlet extends HttpServlet {
 
       TodoDao todoDao = (TodoDao)ContextLoaderListener.applicationContext.getBean("todoDao");
       ArrayList<Todo> list = todoDao.getList();
-      out.println("<a href='form.html'>추가</a><br>");
-      out.println("<table border='1'>");
-      out.println("<tr>");
-      out.println("  <th>번호</th>");
-      out.println("  <th>순서</th>");
-      out.println("  <th>이름</th>");
-      out.println("  <th>프로젝트명</th>");
-      out.println("  <th>상태</th>");
-      out.println("  <th>등록일</th>");
-      out.println("</tr>"); 
-      
-      for (Todo todo : list) {
-        out.println("<tr> ");
-        out.printf("<td><a href='detail?tdno=%d'>%1$d</a></td>"
-            + "<td>%d</td>"
-            + "<td>%s</td>"
-            + "<td>%s</td>"
-            + "<td>%s</td>"
-            + "<td>%s</td>\n",
-          todo.getTodoNo(),
-          todo.getSequence(),
-          todo.getName(),
-          todo.getTitle(),
-          todo.getState(),
-          todo.getRegisterDate());
-        out.println("</tr>");
-      }
-      
-      out.println("</table>");
-      
-      // FooterServlet에게 꼬리말 HTML 생성을 요청한다.
-      rd = request.getRequestDispatcher("/footer");
+      request.setAttribute("todoes", list);
+      RequestDispatcher rd = request.getRequestDispatcher("/todo/list.jsp");
       rd.include(request, response);
-      
-      out.println("</body>");
-      out.println("</html>");
-      
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
       rd.forward(request, response);

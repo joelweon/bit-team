@@ -1,27 +1,69 @@
 package bitcamp.java89.ems2.domain;
 
-public class Lecture extends Member {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Lecture implements Serializable {
   private static final long serialVersionUID = 1L;
-  protected int lectureNumber; // 강의 일련번호
-  protected int possibleNumber; // 수강가능인원
+  
+  protected ArrayList<Integer> teacherNoList; //강사 일련번호 리스트.
+  protected ArrayList<String> teacherNameList;
+  protected int lectureNo; // 강의 일련번호
+  protected int classroomNo;  //강의실 일련번호
+  protected int managerNo;  //매니저 일련번호
+  protected int totalStudentNumber; // 수강가능인원
   protected int price; // 수업료
+  protected int totalTime; // 총시간
   protected String title; // 제목
-  protected String explanation; // 설명 
+  protected String description; // 설명 
   protected String startDate; // 시작일
   protected String endDate; // 종료일
-  protected String allTime; // 총시간
+  protected String managerName;
+  protected String classroomName;
+  protected String teacherAllName;
   
-  public int getLectureNumber() {
-    return lectureNumber;
+  
+  public String getTeacherAllName() {
+    return teacherAllName;
   }
-  public void setLectureNumber(int lectureNumber) {
-    this.lectureNumber = lectureNumber;
+  public void setTeacherAllName(String teacherAllName) {
+    this.teacherAllName = teacherAllName;
   }
-  public int getPossibleNumber() {
-    return possibleNumber;
+  public ArrayList<Integer> getTeacherNoList() {
+    return teacherNoList;
   }
-  public void setPossibleNumber(int possibleNumber) {
-    this.possibleNumber = possibleNumber;
+  public void setTeacherNoList(ArrayList<Integer> teacherNoList) {
+    this.teacherNoList = teacherNoList;
+  }
+  public ArrayList<String> getTeacherNameList() {
+    return teacherNameList;
+  }
+  public void setTeacherNameList(ArrayList<String> teacherNameList) {
+    this.teacherNameList = teacherNameList;
+  }
+  public int getLectureNo() {
+    return lectureNo;
+  }
+  public void setLectureNo(int lectureNo) {
+    this.lectureNo = lectureNo;
+  }
+  public int getClassroomNo() {
+    return classroomNo;
+  }
+  public void setClassroomNo(int classroomNo) {
+    this.classroomNo = classroomNo;
+  }
+  public int getManagerNo() {
+    return managerNo;
+  }
+  public void setManagerNo(int managerNo) {
+    this.managerNo = managerNo;
+  }
+  public int getTotalStudentNumber() {
+    return totalStudentNumber;
+  }
+  public void setTotalStudentNumber(int totalStudentNumber) {
+    this.totalStudentNumber = totalStudentNumber;
   }
   public int getPrice() {
     return price;
@@ -29,17 +71,23 @@ public class Lecture extends Member {
   public void setPrice(int price) {
     this.price = price;
   }
-  public String getTitl() {
+  public int getTotalTime() {
+    return totalTime;
+  }
+  public void setTotalTime(int totalTime) {
+    this.totalTime = totalTime;
+  }
+  public String getTitle() {
     return title;
   }
-  public void setTitl(String title) {
+  public void setTitle(String title) {
     this.title = title;
   }
-  public String getExplanation() {
-    return explanation;
+  public String getDescription() {
+    return description;
   }
-  public void setExplanation(String explanation) {
-    this.explanation = explanation;
+  public void setDescription(String description) {
+    this.description = description;
   }
   public String getStartDate() {
     return startDate;
@@ -53,10 +101,17 @@ public class Lecture extends Member {
   public void setEndDate(String endDate) {
     this.endDate = endDate;
   }
-  public String getAllTime() {
-    return allTime;
+  public String getManagerName() {
+    return managerName;
   }
-  public void setAllTime(String allTime) {
-    this.allTime = allTime;
+  public void setManagerName(String managerName) {
+    this.managerName = managerName;
   }
+  public String getClassroomName() {
+    return classroomName;
+  }
+  public void setClassroomName(String classroomName) {
+    this.classroomName = classroomName;
+  }
+ 
 }
