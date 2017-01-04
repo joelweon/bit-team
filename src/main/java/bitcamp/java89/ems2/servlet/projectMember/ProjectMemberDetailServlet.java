@@ -1,4 +1,4 @@
-package bitcamp.java89.ems2.servlet.projmemb;
+package bitcamp.java89.ems2.servlet.projectMember;
 
 import java.io.IOException;
 
