@@ -25,9 +25,9 @@ public class ProjectMemberUpdateControl implements PageController {
     
     response.setContentType("text/html;charset=UTF-8");
     
-    if (!projectMemberDao.exist(projectMember.getContentNo())) {
-      throw new Exception("해당 글을 찾지 못했습니다.");
-    }
+//    if (!projectMemberDao.exist(projectMember.getContentNo())) {
+//      throw new Exception("해당 글을 찾지 못했습니다.");
+//    }
     projectMemberDao.update(projectMember);
     
     return "redirect:list.do";

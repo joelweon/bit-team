@@ -16,7 +16,7 @@
   </select>
 </table>
 <button type='submit'>변경</button>
- <a href='delete.do?memberNo=${projectMember.memberNo}'>삭제</a>
+ <a href='delete.do?memberNo=${projectMember.memberNo}&projectNo=${projectMember.projectNo}'>삭제</a>
 <input type='hidden' name='memberNo' value='${projectMember.memberNo}'>
  <a href='list.do'>목록</a>
 </form>
