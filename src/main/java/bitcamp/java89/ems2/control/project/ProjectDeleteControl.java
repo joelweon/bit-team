@@ -1,4 +1,4 @@
-package bitcamp.java89.ems2.servlet.project;
+package bitcamp.java89.ems2.control.project;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import bitcamp.java89.ems2.dao.ProjectDao;
 import bitcamp.java89.ems2.listener.ContextLoaderListener;
 
 @WebServlet("/project/delete")
-public class ProjectDeleteServlet extends HttpServlet {
+public class ProjectDeleteControl extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override

@@ -7,13 +7,15 @@
 
 <style>
 body{
-  background: url('../image/back.png') no-repeat center center fixed;
-  background-size:100% 100%;
+background: url('../image/back.png') no-repeat center center fixed;
+background-size:100% 100%;
 }
 </style>
-<h1>프로젝트 멤버 정보</h1>
+
+<jsp:include page="../header"></jsp:include>
+
 <table border='5' cellspacing='0' cellpadding='3' bordercolor='#999999'>
-<tr bgcolor='#cccccc' cellspacing='1'>
+<tr table bgcolor='#cccccc' cellspacing='1'>
   <th>프로젝트번호</th>
   <th>프로젝트명</th>
   <th>이름</th>
@@ -23,10 +25,9 @@ body{
 <c:forEach var="projectMember" items="${projectMembers}">
 <tr> 
   <td>${projectMember.projectNo}</td>
-  <td><a href='detail.do?projectNo=${projectMember.projectNo}&memberNo=${projectMember.memberNo}'>${projectMember.title}</a></td>
+  <td><a href='detail?projectNo=${projectMember.projectNo}&memberNo=${projectMember.memberNo}'>${projectMember.title}</a></td>
   <td>${projectMember.name}</td>
   <td>${projectMember.rol}</td>
 </tr>
 </c:forEach>
 </table>
-<a href='addForm.do'>추가</a><br>
