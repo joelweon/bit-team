@@ -1,7 +1,6 @@
 package bitcamp.java89.ems2.servlet.code;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -32,26 +31,12 @@ public class CodeUpdateServlet extends HttpServlet {
       Code code = new Code();
       Tag tag = new Tag();
       tag.setTagName(dataMap.get("tagName"));
+      code.setContentNo(Integer.parseInt(dataMap.get("contentNo")));
       code.setCode(dataMap.get("conts"));
       code.setProgLanguage(dataMap.get("pl"));
       
       response.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = response.getWriter();
       
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("<meta charset='UTF-8'>");
-      out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-      out.println("<title>코드관리-변경</title>");
-      out.println("</head>");
-      out.println("<body>");
-      
-      // HeaderServlet에게 머리말 HTML 생성을 요청한다.
-      RequestDispatcher rd = request.getRequestDispatcher("/header");
-      rd.include(request, response);
-      
-      out.println("<h1>변경 결과</h1>");
       
       CodeDao codeDao = (CodeDao)ContextLoaderListener.applicationContext.getBean("codeDao");
       TagDao tagDao = (TagDao)ContextLoaderListener.applicationContext.getBean("tagDao");
@@ -65,24 +50,22 @@ public class CodeUpdateServlet extends HttpServlet {
         tag.setContentNo(code.getContentNo());
         
         codeDao.update(code);
-        tagDao.update(tag);
-        out.println("<p>변경 하였습니다.</p>");
+        tagDao.delete(tag.getContentNo());
+        tagDao.insert(tag);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/code/update.jsp");
+        rd.include(request, response);
+        
       } else {
         throw new Exception("로그인 후 글쓰기가 가능합니다.");
       }
       
       
-      // FooterServlet에게 꼬리말 HTML 생성을 요청한다.
-      rd = request.getRequestDispatcher("/footer");
-      rd.include(request, response);
-      
-      out.println("</body>");
-      out.println("</html>");
-      
     } catch (Exception e) {
-      RequestDispatcher rd = request.getRequestDispatcher("/error");
-      rd.forward(request, response);
-      return;
+      e.printStackTrace();
+//      RequestDispatcher rd = request.getRequestDispatcher("/error");
+//      rd.forward(request, response);
+//      return;
     }    
   }
 }

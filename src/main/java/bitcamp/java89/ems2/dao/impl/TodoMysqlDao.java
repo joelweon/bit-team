@@ -35,7 +35,7 @@ public class TodoMysqlDao implements TodoDao {
       
       while (rs.next()) { // 서버에서 레코드 한 개를 가져왔다면,
         Todo todo = new Todo();
-        todo.setTodoNo(rs.getInt("tdno"));
+        todo.setContentNo(rs.getInt("tdno"));
         todo.setSequence(rs.getInt("seq"));
         todo.setName(rs.getString("name"));
         todo.setTitle(rs.getString("titl"));
@@ -56,9 +56,9 @@ public class TodoMysqlDao implements TodoDao {
     try (
       PreparedStatement stmt = con.prepareStatement(
           "select count(*)"
-          + " from todo where todo.mno=?"); ) {
+          + " from todo where tdno=?"); ) {
       
-      stmt.setInt(1, todo.getMemberNo());
+      stmt.setInt(1, todo.getContentNo());
       ResultSet rs = stmt.executeQuery();
       
       rs.next();
@@ -107,7 +107,7 @@ public class TodoMysqlDao implements TodoDao {
     Connection con = ds.getConnection(); 
     try (
       PreparedStatement stmt = con.prepareStatement(
-          "select titl, name, tel, email, todo.conts, rdt, vw_cnt "
+          "select titl, name, tel, email, todo.conts, rdt, vw_cnt, todo.mno, seq, stat, stdt "
           + " from todo left outer join memb on todo.mno=memb.mno "
           + " left outer join content on todo.tdno=content.cono "
           + " left outer join proj on todo.pjno=proj.pjno "
@@ -119,6 +119,7 @@ public class TodoMysqlDao implements TodoDao {
       if (rs.next()) { // 서버에서 레코드 한 개를 가져왔다면,
         Todo todo = new Todo();
         todo.setContentNo(contentNo);
+        todo.setMemberNo(rs.getInt("todo.mno"));
         todo.setTitle(rs.getString("titl"));
         todo.setName(rs.getString("name"));
         todo.setTel(rs.getString("tel"));
@@ -126,6 +127,9 @@ public class TodoMysqlDao implements TodoDao {
         todo.setTdContents(rs.getString("todo.conts"));
         todo.setRegisterDate(rs.getString("rdt"));
         todo.setViewCount(rs.getInt("vw_cnt"));
+        todo.setSequence(Integer.parseInt(rs.getString("seq")));
+        todo.setState(rs.getString("stat"));
+        todo.setStateDate(rs.getString("stdt"));
         rs.close();
         return todo;
         
@@ -145,12 +149,12 @@ public class TodoMysqlDao implements TodoDao {
       PreparedStatement stmt = con.prepareStatement(
           "update todo set"
           + " seq=?, conts=?, stat=?, stdt=now()"
-          + " where todo.mno=?"); ) {
+          + " where tdno=?"); ) {
       
       stmt.setInt(1, todo.getSequence());
       stmt.setString(2, todo.getTdContents());
       stmt.setString(3, todo.getState());
-      stmt.setInt(4, todo.getMemberNo());
+      stmt.setInt(4, todo.getContentNo());
       
       stmt.executeUpdate();
       

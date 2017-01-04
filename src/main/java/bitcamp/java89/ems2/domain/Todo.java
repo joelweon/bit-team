@@ -1,21 +1,15 @@
 package bitcamp.java89.ems2.domain;
 
-public class Todo extends Project {
+public class Todo extends ProjectMember {
   private static final long serialVersionUID = 1L;
  
-  protected int todoNo;
+
   protected int sequence; // 순서
-  protected String tdcontents; // 내용
+  protected String tdContents; // 내용
   protected String state; // 상태
   protected String stateDate; // 상태설정일
   
-  
-  public int getTodoNo() {
-    return todoNo;
-  }
-  public void setTodoNo(int todoNo) {
-    this.todoNo = todoNo;
-  }
+ 
   public int getSequence() {
     return sequence;
   }
@@ -23,10 +17,10 @@ public class Todo extends Project {
     this.sequence = sequence;
   }
   public String getTdContents() {
-    return tdcontents;
+    return tdContents;
   }
-  public void setTdContents(String tdcontents) {
-    this.tdcontents = tdcontents;
+  public void setTdContents(String tdContents) {
+    this.tdContents = tdContents;
   }
   public String getState() {
     return state;

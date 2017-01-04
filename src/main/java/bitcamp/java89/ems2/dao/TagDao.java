@@ -12,4 +12,6 @@ public interface TagDao {
   void update(Tag tag) throws Exception;
   boolean exist(int contentNo) throws Exception;
   String getContent(int contentNo) throws Exception;
+  void delete(int contentNo) throws Exception;
 }
+s

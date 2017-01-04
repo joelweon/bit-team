@@ -38,6 +38,5 @@ public class DownloadDeleteServlet extends HttpServlet {
       rd.forward(request, response);
       return;
     }
-
   }
 }
