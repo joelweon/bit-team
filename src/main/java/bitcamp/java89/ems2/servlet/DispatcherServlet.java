@@ -1,6 +1,7 @@
 package bitcamp.java89.ems2.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,13 +10,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bitcamp.java89.ems2.control.PageController;
-import bitcamp.java89.ems2.listener.ContextLoaderListener;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import bitcamp.java89.ems2.context.RequestHandlerMapping;
+import bitcamp.java89.ems2.context.RequestHandlerMapping.RequestHandler;
 
 @WebServlet("*.do")
 public class DispatcherServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  ApplicationContext applicationContext;
+  RequestHandlerMapping handlerMapping;
+  
+  @Override
+  public void init() throws ServletException {
+    applicationContext = 
+        WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+    
+    // 스프링 IoC 컨테이너에 들어있는 객체들의 이름을 가져온다.
+    String[] names = applicationContext.getBeanDefinitionNames();
+    
+    // 이름으로 객체를 찾아 ArrayList에 저장한다.
+    ArrayList<Object> objList = new ArrayList<>();
+    for (String name : names) {
+      objList.add(applicationContext.getBean(name));
+      System.out.println("objList: "+name);
+    }
+    
+    // 객체를 조사하여 @RequestMapping이 붙은 메서드를 따로 관리한다.
+    handlerMapping = new RequestHandlerMapping(objList);
+  }
+  
   @Override
   protected void service(HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
@@ -24,15 +50,15 @@ public class DispatcherServlet extends HttpServlet {
       String servletPath = request.getServletPath();
       
       // 스프링 IoC 컨테이너에서 서블릿 경로에 해당하는 객체를 찾는다.
-      PageController pageController = null; 
+      RequestHandler requestHandler = null; 
       try {
-        pageController = (PageController)ContextLoaderListener.applicationContext.getBean(servletPath);
+        requestHandler = handlerMapping.getRequestHandler(servletPath);
       } catch (Exception e) {}
       
       // 페이지 컨트롤러를 호출하여 작업을 실행시킨다.
       String viewUrl = null;
-      if (pageController != null) {
-        viewUrl = pageController.service(request, response);
+      if (requestHandler != null) {
+        viewUrl = (String)requestHandler.method.invoke(requestHandler.obj, request, response);
       } else {
         viewUrl = servletPath.replaceAll(".do", ".jsp");
       }
